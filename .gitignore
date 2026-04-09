@@ -1,11 +1,11 @@
 # Dependencies
 node_modules/
-client/node_modules/
+client/app/node_modules/
 server/node_modules/
 
 # Build outputs
-client/dist/
-client/build/
+client/app/dist/
+client/app/build/
 server/dist/
 server/build/
 
