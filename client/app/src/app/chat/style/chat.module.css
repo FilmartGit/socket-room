@@ -1,0 +1,101 @@
+.container {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.chat_container {
+  padding: 20px;
+  overflow-y: auto;
+  height: 100%;
+}
+.header {
+  padding: 20px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header p {
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.header__buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: white;
+}
+.user__rounded {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.chat_form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 20px;
+  position: relative;
+}
+.emoji {
+  position: relative;
+}
+.emojiPicker {
+  position: absolute !important;
+  left: 0px;
+  bottom: 70px;
+}
+.chat_form_input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+}
+.own_message {
+  align-self: flex-end;
+}
+.other_message {
+  align-self: flex-start;
+}
+.message_content{
+  padding: 10px;
+  width: fit-content;
+}
+.messages_box{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;  
+}
+.user_name{
+  color: white;
+  font-weight: 400;
+  font-size: 14px;
+}
+.user_info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user__rounded {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}

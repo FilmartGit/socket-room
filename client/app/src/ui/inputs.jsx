@@ -18,7 +18,10 @@ const UIInputs = {
           {title}
         </label>
         <input
-          className={clsx("form_groupe_input", error && "form_groupe_input_error")}
+          className={clsx(
+            "form_groupe_input",
+            error && "form_groupe_input_error",
+          )}
           type={type}
           id={id}
           name={name}
@@ -27,6 +30,34 @@ const UIInputs = {
           onChange={(e) => onChange(e)}
         />
       </div>
+    );
+  },
+  Input: ({
+    id,
+    name,
+    type = "text",
+    value,
+    placeholder,
+    required,
+    onChange,
+    error,
+    className
+  }) => {
+    return (
+      <input
+        className={clsx(
+          "form_groupe_input",
+          error && "form_groupe_input_error",
+          className
+        )}
+        type={type}
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        required={required}
+        onChange={(e) => onChange(e)}
+        value={value}
+      />
     );
   },
 };

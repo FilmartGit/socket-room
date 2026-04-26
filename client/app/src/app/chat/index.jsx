@@ -1,30 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from 'react-router-dom';
-import io from "socket.io-client";
+import React from "react";
+import { useLocation } from "react-router-dom";
 
-const socket = io("http://localhost:5000");
+import style from "./style/chat.module.css";
+import Header from "./components/header";
+import ChatContainer from "./components/chat_view/container";
+import MessageBox from "./components/chat_view/messages_box";
+import ChatForm from "./components/chat_view/from";
+import { useChat } from "./model/useChat";
 
 const Chat = () => {
-
   const { search } = useLocation();
-  const [params, setParams] = useState(null);
+  const { params, messages } = useChat(search);
 
-
-  useEffect(()=>{
-    const searchParams = Object.fromEntries(new URLSearchParams(search));
-    setParams(searchParams);
-    socket.emit('join', searchParams);
-  }, [search]);
-
-  useEffect(()=>{
-    socket.on('message', ({data})=>{
-      console.log(data);
-    })
-  }, []);
-
-  console.log(params);
-
-  return <div>Chat</div>;
+  return (
+    <div className={style.container}>
+      <Header room={params?.roomId} user={params?.userName} counter={0} />
+      <ChatContainer>
+        <MessageBox messages={messages} user={params?.userName} />
+      </ChatContainer>
+      <ChatForm params={params} />
+    </div>
+  );
 };
 
 export default Chat;
