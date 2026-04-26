@@ -9,7 +9,7 @@ import ChatForm from "./components/chat_view/from";
 import { useChat } from "./model/useChat";
 
 import io from "socket.io-client";
-const socket = io("http://192.168.0.17:5000");
+const socket = io("http://localhost:5000");
 
 const Chat = () => {
   const { search } = useLocation();
