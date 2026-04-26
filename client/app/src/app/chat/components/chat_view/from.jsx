@@ -4,7 +4,7 @@ import SmilePicker from "./smile_picker";
 import UIButtons from "../../../../ui/buttons";
 import { useFormInputs } from "../../model/useFormInputs";
 
-export default function ChatForm({ params }) {
+export default function ChatForm({ params, socket }) {
   const {
     message,
     setMessage,
@@ -12,7 +12,7 @@ export default function ChatForm({ params }) {
     toggleEmojiPicker,
     onEmojiClick,
     sendMessage,
-  } = useFormInputs(params);
+  } = useFormInputs(params, socket);
   return (
     <div className={styles.chat_form}>
       <UIInputs.Input

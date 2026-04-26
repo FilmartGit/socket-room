@@ -4,7 +4,10 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 const app = express();
 const route = require("./route/route");
-const { addUser } = require("./constants/users");
+const { getRoomUsers, removeUser } = require("./constants/users");
+const { joinToRoom } = require("./services/join-to-room");
+const { sendMessage } = require("./services/send-message");
+const { logout } = require("./services/logout");
 app.use(cors({ origin: "*" }));
 app.use(route);
 
@@ -20,24 +23,17 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   // прослушивание события "join" от клиента
   socket.on("join", ({ roomId, userName }) => {
-    // присоединение к комнате
-    socket.join(roomId);
+    joinToRoom(socket, io, roomId, userName);
+  });
 
-    // в production здесь должна быть логика проверка и добавление пользователя в БД
-    const user = addUser({ userName, roomId });
+  // прослушивание события "sendMessage" от клиента
+  socket.on("sendMessage", ({ message, params }) => {
+    sendMessage(socket, io, params, message);
+  });
 
-    // отправка в ответ пользователю
-    socket.emit("message", {
-      data: { user: { name: "Admin" }, message: `Вы присоединились к чату` },
-    });
-
-    // отправка всем пользователям комнаты, кроме текущего
-    socket.broadcast.to(roomId).emit("message", {
-      data: {
-        user: { name: "Admin" },
-        message: `${userName} присоединился к чату`,
-      },
-    });
+  // прослушивание события "logout" от клиента
+  socket.on("logout", ({ params }) => {
+    logout(socket, io, params);
   });
 
   io.on("disconnect", () => {

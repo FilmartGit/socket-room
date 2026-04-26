@@ -1,12 +1,10 @@
 import { useState } from "react";
-import io from "socket.io-client";
-const socket = io("http://localhost:5000");
 
 // Создание и отправка сообщения
 // Отправка параметров комнаты и имени пользователя для присоединения к комнате на сервере
 // Вывод входящих сообщений
 
-export function useFormInputs(params) {
+export function useFormInputs(params, socket) {
   const [message, setMessage] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
@@ -23,6 +21,10 @@ export function useFormInputs(params) {
   const sendMessage = () => {
     if (!message) return;
     socket.emit("sendMessage", { message, params });
+    console.log("DEBUG")
+    console.log("EMIT")
+    console.log(message)
+    console.log(params)
     setMessage("");
   };
 

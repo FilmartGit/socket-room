@@ -9,13 +9,13 @@ const UIButtons = {
       </Link>
     );
   },
-  Logout: ({ to, onClick }) => {
+  Logout: ({ onClick }) => {
     return (
-      <Link to={to} className="button_logout_link" onClick={onClick}>
+      <div className="button_logout_link" onClick={onClick}>
         <button className="button_logout">
           <span>Выйти</span> <UIIcons.Logout />
         </button>
-      </Link>
+      </div>
     );
   },
   SendMessage: ({ onClick }) => {
